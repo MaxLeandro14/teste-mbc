@@ -3,8 +3,10 @@ https://github.com/mercadobitcoin/desafio-mb-web
 
 ## **Considerações**
 
-- Optei por não colocar máscara nos campos  
-- Algumas validações, como CPF e CNPJ tive que adaptar da internet (tempo curto para fazer do zero); 
+- Optei por não colocar máscara nos campos;
+- Algumas validações, como CPF e CNPJ tive que adaptar da internet (tempo curto para fazer do zero);
+- No backend, implementei apenas a validação para garantir que todos os campos obrigatórios fossem preenchidos. Caso contrário, o sistema retorna um erro com o código HTTP adequado, conforme solicitado nos requisitos do teste;
+- Foi muito bom fazer o teste :)
 
 <br>
 
