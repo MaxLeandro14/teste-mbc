@@ -1,6 +1,6 @@
 export const createUser = async (req, res) => {
     try {
-         const {
+        const {
             name,
             email,
             password,
@@ -13,33 +13,34 @@ export const createUser = async (req, res) => {
             foundationDate
         } = req.body;
 
+
         if (!userType) {
-            return res.status(400).json({ message: 'Tipo de usuário é obrigatório.' });
+            return res.status(400).json({ message: 'O tipo de usuário (PF ou PJ) é obrigatório.' });
         }
 
         if (userType === 'PF') {
-            if (!name || !email || !birthDate || !cpf || !phoneNumber) {
-                return res.status(422).json({ message: 'Dados incompletos para pessoa física.' });
+            if (!name || !email || !password || !birthDate || !cpf || !phoneNumber) {
+                return res.status(422).json({ message: 'Todos os campos de pessoa física são obrigatórios.' });
             }
 
-            console.log('Dados pessoa física:', name, email, birthDate, cpf, phoneNumber);
-            return res.status(201).json({ message: 'Usuário (PF) cadastrado com sucesso!' });
+            console.log('Pessoa Física cadastrada:', { name, email, birthDate, cpf, phoneNumber });
+            return res.status(201).json({ message: 'Usuário (Pessoa Física) cadastrado com sucesso!' });
         }
 
         if (userType === 'PJ') {
-            if (!companyName || !email || !foundationDate || !cnpj || !phoneNumber) {
-                return res.status(422).json({ message: 'Dados incompletos para pessoa jurídica.' });
+            if (!companyName || !email || !password || !foundationDate || !cnpj || !phoneNumber) {
+                return res.status(422).json({ message: 'Todos os campos de pessoa jurídica são obrigatórios.' });
             }
 
-            console.log('Dados pessoa jurídica:', companyName, email, foundationDate, cnpj, phoneNumber);
-            return res.status(201).json({ message: 'Empresa (PJ) cadastrada com sucesso!' });
+            console.log('Pessoa Jurídica cadastrada:', { companyName, email, foundationDate, cnpj, phoneNumber });
+            return res.status(201).json({ message: 'Empresa (Pessoa Jurídica) cadastrada com sucesso!' });
         }
 
-        return res.status(400).json({ message: 'Tipo de usuário inválido.' });
+        return res.status(400).json({ message: 'Tipo de usuário inválido. Use "PF" ou "PJ".' });
 
     } catch (error) {
-        console.error('Erro:', error);
-        return res.status(500).json({ 
+        console.error('Erro no cadastro:', error);
+        return res.status(500).json({
             message: 'Erro interno no servidor'
         });
     }
