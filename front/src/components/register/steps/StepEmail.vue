@@ -94,7 +94,6 @@ const handleNext = () => {
 
     .button-footer{
         margin-top: 25px;
-
     }
 }
 
